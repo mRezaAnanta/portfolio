@@ -1,49 +1,83 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import Cmdline from '@/components/Cmdline.tsx'
+import Logo from '@/components/Logo.astro'
+import Layout from '../layouts/Layout.astro'
+import { File, Search, TextSelect, Settings, UserRound, LogOut, Zap, type Icon as IconType } from '@lucide/astro'
+
+interface MenuItem {
+  icon: typeof IconType;
+  label: string;
+  description: string;
+  key: string;
+  path?: string;
+}
+
+const MENU_ITEMS: MenuItem[] = [
+  {
+    icon: Search,
+    label: "Find blog page",
+    description: "My blog page",
+    key: "f",
+  },
+  {
+    icon: File,
+    label: "Recent Projects",
+    description: "My projects list",
+    key: "r",
+  },
+  {
+    icon: TextSelect,
+    label: "Find text",
+    description: "My personal knowledge repository",
+    key: "g",
+  },
+  {
+    icon: Settings,
+    label: "About Me",
+    description: "About me page",
+    key: "c",
+  },
+  {
+    icon: UserRound,
+    label: "Contact",
+    description: "Ask me about anything! :D",
+    key: "c",
+  },
+  {
+    icon: LogOut,
+    label: "Quit",
+    description: "To quit this browser tab",
+    key: "q",
+  },
+]
+
+const title = "M. Reza Ananta Portfolio"
+const description = "Welcome to my neovim with LazyVim style portfolio"
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<Layout title={title} description={description}>
+  <main class="flex flex-col h-screen items-center justify-center">
+    <Logo />
+
+    <section class="flex flex-col w-[400px] mx-auto gap-3">
+      {MENU_ITEMS && MENU_ITEMS.map((item) => (
+        <div class="flex items-center justify-between gap-x-3 text-primary">
+          <item.icon>
+          <div class="flex-1">
+            <span class="text-base">{item.label}</span>
+            <p class="text-xs">{item.description}</p>
+          </div>
+          <span class="text-secondary">{item.key}</span>
+        </div>
+        ))}
+    </section>
+
+    <div class="flex items-center justify-center mx-auto w-fit mt-8 text-xs text-primary gap-1">
+      <Zap size="16" fill="#80AAFC"/>
+      <!-- TODO: how to get the loading time -->
+      <span>Portfolio loaded with Astro & TypeScript stack in 10 seconds</span>
+    </div>
+
+    <Cmdline client:load />
+  </main>
+</Layout>
