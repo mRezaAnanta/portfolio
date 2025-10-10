@@ -1,83 +1,24 @@
 ---
-import Cmdline from '@/components/Cmdline.tsx'
-import Logo from '@/components/Logo.astro'
 import Layout from '../layouts/Layout.astro'
-import { File, Search, TextSelect, Settings, UserRound, LogOut, Zap, type Icon as IconType } from '@lucide/astro'
-
-interface MenuItem {
-  icon: typeof IconType;
-  label: string;
-  description: string;
-  key: string;
-  path?: string;
-}
-
-const MENU_ITEMS: MenuItem[] = [
-  {
-    icon: Search,
-    label: "Find blog page",
-    description: "My blog page",
-    key: "f",
-  },
-  {
-    icon: File,
-    label: "Recent Projects",
-    description: "My projects list",
-    key: "r",
-  },
-  {
-    icon: TextSelect,
-    label: "Find text",
-    description: "My personal knowledge repository",
-    key: "g",
-  },
-  {
-    icon: Settings,
-    label: "About Me",
-    description: "About me page",
-    key: "c",
-  },
-  {
-    icon: UserRound,
-    label: "Contact",
-    description: "Ask me about anything! :D",
-    key: "c",
-  },
-  {
-    icon: LogOut,
-    label: "Quit",
-    description: "To quit this browser tab",
-    key: "q",
-  },
-]
+import KeyHandler from '@/components/KeyHandler.tsx'
+import Logo from '@/components/Logo.astro'
+import { Zap } from '@lucide/astro'
 
 const title = "M. Reza Ananta Portfolio"
 const description = "Welcome to my neovim with LazyVim style portfolio"
 ---
 
-<Layout title={title} description={description}>
-  <main class="flex flex-col h-screen items-center justify-center">
-    <Logo />
+  <Layout title={title} description={description}>
+    <main class="flex flex-col h-screen items-center justify-center">
 
-    <section class="flex flex-col w-[400px] mx-auto gap-3">
-      {MENU_ITEMS && MENU_ITEMS.map((item) => (
-        <div class="flex items-center justify-between gap-x-3 text-primary">
-          <item.icon>
-          <div class="flex-1">
-            <span class="text-base">{item.label}</span>
-            <p class="text-xs">{item.description}</p>
-          </div>
-          <span class="text-secondary">{item.key}</span>
-        </div>
-        ))}
-    </section>
+      <Logo />
+      <KeyHandler client:load />
 
-    <div class="flex items-center justify-center mx-auto w-fit mt-8 text-xs text-primary gap-1">
-      <Zap size="16" fill="#80AAFC"/>
-      <!-- TODO: how to get the loading time -->
-      <span>Portfolio loaded with Astro & TypeScript stack in 10 seconds</span>
-    </div>
+      <div class="flex items-center justify-center mx-auto w-fit mt-8 text-xs text-primary gap-1">
+        <Zap size="16" fill="#80AAFC"/>
+        <!-- TODO: how to get the loading time -->
+        <span>Portfolio loaded with Astro & TypeScript stack in 10 miliseconds</span>
+      </div>
 
-    <Cmdline client:load />
-  </main>
-</Layout>
+    </main>
+  </Layout>
