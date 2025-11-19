@@ -8,17 +8,17 @@ const title = "M. Reza Ananta Portfolio"
 const description = "Welcome to my neovim with LazyVim style portfolio"
 ---
 
-  <Layout title={title} description={description}>
-    <main class="flex flex-col h-screen items-center justify-center">
+<Layout title={title} description={description}>
+  <main class="flex flex-col h-screen items-center justify-center">
 
-      <Logo />
-      <KeyHandler client:load />
+    <Logo />
+    <KeyHandler client:load />
 
-      <div class="flex items-center justify-center mx-auto w-fit mt-8 text-xs text-primary gap-1">
-        <Zap size="16" fill="#80AAFC"/>
         <!-- TODO: how to get the loading time -->
         <span>Portfolio loaded with Astro & TypeScript stack in 10 miliseconds</span>
-      </div>
+    <div class="flex items-center justify-center mx-auto w-fit mt-8 text-xs text-primary gap-1">
+      <Zap size="12" fill="#80AAFC"/>
+    </div>
 
-    </main>
-  </Layout>
+  </main>
+</Layout>

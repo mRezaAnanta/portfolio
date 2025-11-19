@@ -25,7 +25,7 @@ const KeyHandler: React.FC = () => {
 
   return (
     <>
-      <DashboardHandler mode={mode} setMode={setMode} />
+      <DashboardHandler mode={mode} setMode={setMode} client:load />
       {mode === 'command' && (
         <Cmdline
           mode={mode}
