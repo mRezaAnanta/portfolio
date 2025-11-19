@@ -14,11 +14,19 @@ const description = "Welcome to my neovim with LazyVim style portfolio"
     <Logo />
     <KeyHandler client:load />
 
-        <!-- TODO: how to get the loading time -->
-        <span>Portfolio loaded with Astro & TypeScript stack in 10 miliseconds</span>
     <div class="flex items-center justify-center mx-auto w-fit mt-8 text-xs text-primary gap-1">
       <Zap size="12" fill="#80AAFC"/>
+      <span id="loadTimeDisplay" class="text-[10px] sm:text-xs"></span>
     </div>
 
   </main>
 </Layout>
+
+<script>
+  window.addEventListener('load', () => {
+    const pageEnd = performance.mark('pageEnd')
+    const loadTime = Math.floor(pageEnd.startTime)
+    const loadTimeElement = document.getElementById('loadTimeDisplay');
+    loadTimeElement.textContent = `Portfolio loaded with Astro & TypeScript stack in ${loadTime} ms`;
+  })
+</script>
