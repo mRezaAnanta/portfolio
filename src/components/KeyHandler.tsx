@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import Cmdline from './Cmdline.tsx'
-import DashboardHandler from './DashboardHandler.tsx'
+import Cmdline from '@/components/Cmdline.tsx'
+import HelpWindows from '@/components/HelpWindows.tsx'
+import DashboardHandler from '@/components/DashboardHandler.tsx'
 
 const KeyHandler: React.FC = () => {
-  const [mode, setMode] = useState<'normal' | 'command'>('normal')
+  const [mode, setMode] = useState<'normal' | 'command' | 'help'>('normal')
   const [selectedIndex, setSelectedIndex] = useState(0)
 
   useEffect(() => {
@@ -14,6 +15,11 @@ const KeyHandler: React.FC = () => {
         case ':':
           e.preventDefault()
           setMode('command')
+          break
+
+        case 'h':
+          e.preventDefault()
+          setMode('help')
           break
 
       }
@@ -31,6 +37,13 @@ const KeyHandler: React.FC = () => {
           mode={mode}
           setMode={setMode}
           // onExecute={executeCommand}
+        />
+      )}
+
+      {mode === 'help' && (
+        <HelpWindows
+          mode={mode}
+          setMode={setMode}
         />
       )}
     </>
