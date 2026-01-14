@@ -1,5 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro'
+import Layout from '@/layouts/Layout.astro'
 import KeyHandler from '@/components/KeyHandler.tsx'
 import Logo from '@/components/Logo.astro'
 import { Zap } from '@lucide/astro'
@@ -22,11 +22,4 @@ const description = "Welcome to my neovim with LazyVim style portfolio"
   </main>
 </Layout>
 
-<script>
-  window.addEventListener('load', () => {
-    const pageEnd = performance.mark('pageEnd')
-    const loadTime = Math.floor(pageEnd.startTime)
-    const loadTimeElement = document.getElementById('loadTimeDisplay');
-    loadTimeElement.textContent = `Portfolio loaded with Astro & TypeScript stack in ${loadTime} ms`;
-  })
-</script>
+<script src="@/lib/loadTime.ts" />
