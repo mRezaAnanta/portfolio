@@ -51,19 +51,20 @@ export const DASHBOARD_ITEMS: dashboardItemProps[] = [
     path: '/brain',
   },
   {
-    icon: Settings,
+    // icon: Settings,
+    icon: UserRound,
     label: "About Me",
     description: "My Resume and CV",
     key: "a",
     path: '/about',
   },
-  {
-    icon: UserRound,
-    label: "Contact",
-    description: "Ask me about anything! :D",
-    key: "c",
-    path: '/contact',
-  },
+  // {
+  //   icon: UserRound,
+  //   label: "Contact",
+  //   description: "Ask me about anything! :D",
+  //   key: "c",
+  //   path: '/contact',
+  // },
   {
     icon: FileQuestionMark,
     label: "Help",
